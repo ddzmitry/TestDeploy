@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
-import { View, Text, Pano, AppRegistry, asset, StyleSheet } from 'react-vr';
+import { View, Text, Pano, AppRegistry, asset, StyleSheet, VrButton } from 'react-vr';
 import Timer from './Timer';
+import levels from './static_assets/levels.json';
+import Button from './Button.js';
 
-
-const places = [
-{
-    title: 'island-garden',
-    image: 'island-garden.jpg'
-  },
-  {
-    title: 'starry-sky',
-    image: 'starry-sky.jpg'
-  },
-  {
-    title: 'winter-outdoor',
-    image: 'winter-outdoor.jpg'
-  },
-  {
-    title: 'museum',
-    image: 'museum.jpg'
-  }
-]
+const game = {
+    counter:5,
+    countdown(){
+            game.counter--
+            console.log(game.counter)
+            if(game.counter == 0){
+                console.log('Game Over')
+                // reset
+                game.counter = 5
+            }
+        },
+        startGame(){
+            // this is an intial timer for the game
+            timer = setInterval(game.countdown,1000)
+        }
+}
 
 class WorldTour extends Component{
 constructor(){
   super();
 
   this.state={
+    deviceConnected: false,
     showMenu: false,
-    place: 'starry-sky.jpg',
-    elapsed: 0
+    levels: levels
   }
+
 }
 
 
@@ -38,41 +38,34 @@ toggleMenu(){
   this.setState({showMenu: !this.state.showMenu})
 }
 
-
   render(){
      return (
       <View>
-        <Pano source={asset(this.state.place)}></Pano>
+        <Pano source= {asset(this.state.levels[0].image)}></Pano>
+        <Button audio={this.state.levels[0].audio} />
         <View style={styles.menuButton}
           onEnter={() => this.toggleMenu()}
           >
-          <Timer style={styles.timer} start={Date.now()} />
+
           <Text style={styles.menuButtonText}>
             {this.state.showMenu ? 'Close Menu' : 'Open Menu'}
 
           </Text>
         </View>
 
-        {
-          this.state.showMenu ?
 
           <View style={styles.menu}>
-            {places.map((place, index) => {
-              return(
+
+
                 <View
                   style={styles.menuItem}
-                  key={index}
-                  onEnter={() => this.setState({place: place.image})}
-                  onClick={() => this.startTimer()}
+
                   >
-                  <Text style={styles.menuItemText}>{place.title}</Text>
+                  <Text style={styles.menuItemText}>{}</Text>
                 </View>
-              )
-            })}
+
           </View>
-          :
-          <View></View>
-        }
+
       </View>
     )
   }

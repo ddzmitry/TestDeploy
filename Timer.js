@@ -3,14 +3,16 @@ import {View, Text } from 'react-vr';
 
 class Timer extends Component{
 
-  getInitialState(){
-    //call BEFORE render function
-    //set initial state to 0
-    return {elapsed: 0};
+constructor(){
+  super();
+
+  this.state={
+    elapsed: 0
   }
+}
 
   componentDidMount(){
-    this.timer = setInterval(this.tick, 50);
+    this.timer = setInterval(this.tick, 1);
   }
 
   componentWillUnmount(){
@@ -18,13 +20,13 @@ class Timer extends Component{
   }
 
   tick(){
-    this.setState({elapsed: new Date() - this.props.start});
+    this.setState({elapsed: new Date() - props.start});
   }
 
   render(){
-    let elapsed = Math.round(this.state.elapsed / 100);
+    let elapsed = Math.round(this.state.elapsed / 1000);
 
-    var seconds = (elapsed / 10).toFixed(1);
+    var seconds = (elapsed).toFixed(1);
 
     return(
       <View>

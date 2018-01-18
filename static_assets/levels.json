@@ -1,0 +1,22 @@
+[
+  {
+    "title": "island-garden",
+    "image": "island-garden.jpg",
+    "audio": "ForgiveVocalSlowed.mp3",
+    "timeElapsed": 0,
+    "items": [ "this", "that", "the other"]
+
+  },
+  {
+      "title": "starry-sky",
+      "image": "starry-sky.jpg"
+  },
+  {
+      "title": "winter-outdoor",
+      "image": "winter-outdoor.jpg"
+  },
+  {
+      "title": "museum",
+      "image": "museum.jpg"
+  }
+]
