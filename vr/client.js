@@ -4,18 +4,19 @@
 
 // Auto-generated content.
 import {VRInstance} from 'react-vr-web';
+import * as SimpleRaycaster from "simple-raycaster";
+
 
 function init(bundle, parent, options) {
   const vr = new VRInstance(bundle, 'WorldTour', parent, {
-    // Add custom options here
-    ...options,
-  });
-  vr.render = function() {
-    // Any custom behavior you want to perform on each frame goes here
-  };
-  // Begin the animation loop
-  vr.start();
-  return vr;
-}
+    raycasters: [
+          SimpleRaycaster // Add SimpleRaycaster to the options
+        ],
+        cursorVisibility: 'visible',
+      });
+      // Begin the animation loop
+      vr.start();
+      return vr;
+    }
 
-window.ReactVR = {init};
+    window.ReactVR = {init};

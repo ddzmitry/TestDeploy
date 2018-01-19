@@ -29,10 +29,12 @@ export default class Button extends React.Component {
   render() {
     return (
       <VrButton style={this.styles.button}
+        onClick={this.props.startTimer}
         onClickSound={{
-          mp3: asset(this.props.audio)}} >
+          mp3: asset(this.props.audio)}}
+          >
         <Text style={this.styles.text}>
-          {this.props.text}
+          Start
         </Text>
       </VrButton>
     );

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import GazeButton from 'react-vr-gaze-button';
 import { View, Text, Pano, AppRegistry, asset, StyleSheet, VrButton } from 'react-vr';
 import Timer from './Timer';
-import levels from './static_assets/levels.json';
+import levels from './levels.json';
 import Button from './Button.js';
 
 const game = {
@@ -28,7 +29,8 @@ constructor(){
   this.state={
     deviceConnected: false,
     showMenu: false,
-    levels: levels
+    levels,
+    elapsed: 0
   }
 
 }
@@ -42,7 +44,9 @@ toggleMenu(){
      return (
       <View>
         <Pano source= {asset(this.state.levels[0].image)}></Pano>
-        <Button audio={this.state.levels[0].audio} />
+        <Timer start={Date.now()} />
+      <Button audio={this.state.levels[0].audio}
+          startTimer={()=> game.startGame()}/>
         <View style={styles.menuButton}
           onEnter={() => this.toggleMenu()}
           >
