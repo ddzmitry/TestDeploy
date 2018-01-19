@@ -5,35 +5,53 @@ import Timer from './Timer';
 import levels from './levels.json';
 import Button from './Button.js';
 
-const game = {
-    counter:5,
-    countdown(){
-            game.counter--
-            console.log(game.counter)
-            if(game.counter == 0){
-                console.log('Game Over')
-                // reset
-                game.counter = 5
-            }
-        },
-        startGame(){
-            // this is an intial timer for the game
-            timer = setInterval(game.countdown,1000)
-        }
-}
-
 class WorldTour extends Component{
 constructor(){
   super();
+
+
 
   this.state={
     deviceConnected: false,
     showMenu: false,
     levels,
-    elapsed: 0
+    elapsed: 0,
+    timer:30
   }
+  this.startTimer = this.startTimer.bind(this);
 
 }
+startTimer(){
+  let x = this.state.timer
+  if(x <= 0){
+    this.setState({timer: 30})
+    this.state.elapsed +=1
+  } else{
+    x -= 1
+      this.setState({timer: x})
+  }
+     
+    }
+
+startGame(){
+    // this is an intial timer for the game
+  setInterval(this.startTimer,1000)
+}
+
+
+
+// export getTimeUntil(timeout){
+// console.log('Timer was passed')
+// const time = timeout - (new Date());
+
+// const seconds = Math.floor((time/1000) % 60);
+// const minutes = Math.floor((time/1000/60)%60);
+// if(this.state.minutes >= 0 ){
+// this.setState({minutes, seconds})
+// }else if(this.state.seconds < 0){
+// return this.setState({minutes: -1, seconds: -1})
+// }
+// }
 
 
 toggleMenu(){
@@ -44,9 +62,10 @@ toggleMenu(){
      return (
       <View>
         <Pano source= {asset(this.state.levels[0].image)}></Pano>
-        <Timer start={Date.now()} />
-      <Button audio={this.state.levels[0].audio}
-          startTimer={()=> game.startGame()}/>
+        <Timer {...this.state} start={Date.now()} />
+      <Button startGame={this.startGame.bind(this)} {...this.state} audio={this.state.levels[0].audio}
+        
+         />
         <View style={styles.menuButton}
           onEnter={() => this.toggleMenu()}
           >

@@ -3837,6 +3837,10 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
+react-vr-gaze-button@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-vr-gaze-button/-/react-vr-gaze-button-0.1.4.tgz#ea5e499524995b99890f7e58a81034bb244a9aee"
+
 react-vr-web@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-vr-web/-/react-vr-web-2.0.0.tgz#cf8b4ef232a4bfd4c8ec7f87f6ae8d69547e0ab3"
@@ -4263,6 +4267,10 @@ simple-plist@^0.2.1:
     bplist-creator "0.0.7"
     bplist-parser "0.1.1"
     plist "2.0.1"
+
+simple-raycaster@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/simple-raycaster/-/simple-raycaster-1.0.1.tgz#a30b1b4ed2363b06d0b0b2c4aae2219e0793e644"
 
 single-line-log@^1.1.2:
   version "1.1.2"

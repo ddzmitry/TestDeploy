@@ -5,11 +5,11 @@ import {
   VrButton,
   asset,
 } from 'react-vr';
-
+// import {getTimeUntil} from './index.vr'
 
 export default class Button extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.styles = StyleSheet.create({
   	  button: {
     		margin: 0.05,
@@ -26,10 +26,16 @@ export default class Button extends React.Component {
 	  });
   }
 
+
+
   render() {
     return (
       <VrButton style={this.styles.button}
-        onClick={this.props.startTimer}
+        onClick={()=>{
+          console.log('long CLick')
+          console.log(this.props)
+          this.props.startGame()
+        }}
         onClickSound={{
           mp3: asset(this.props.audio)}}
           >
